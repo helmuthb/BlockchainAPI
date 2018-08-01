@@ -24,6 +24,19 @@ app.get('/block/:height', (req, res) => {
 
 app.post('/block', (req, res) => {
   try {
+    console.log(req.body);
+    if (!req.body) {
+      res.status(400).send({
+        error: 'No request block received. Please note that only JSON is supported.'
+      });
+      return;
+    }
+    if (typeof req.body.body == 'undefined') {
+      res.status(400).send({
+        error: 'No attribute named \'body\' in the request received. Empty blocks are not supported. Please note that only JSON is supported.'
+      });
+      return;
+    }
     const block = req.body;
     blockchain.addBlock(block);
     const height = blockchain.getBlockHeight();

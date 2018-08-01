@@ -31,3 +31,4 @@ This returns the block of the given number
 POST /block
 ```
 This will store the JSON request body as a new block on the chain.
+*Note*: The data has to be provided as JSON, not form-urlencoded.
